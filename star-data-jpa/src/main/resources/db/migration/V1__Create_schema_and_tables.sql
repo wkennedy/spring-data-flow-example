@@ -46,7 +46,7 @@ CREATE TABLE `engine_dim` (
 
 LOCK TABLES `engine_dim` WRITE;
 /*!40000 ALTER TABLE `engine_dim` DISABLE KEYS */;
-INSERT INTO `engine_dim` VALUES (1,'SR20DE','2.0 litres','gasoline'),(2,'N54','3.0 litres','gasoline');
+INSERT INTO `engine_dim` VALUES (1,'SR20','2.0 litres','gasoline'),(2,'N54','3.0 litres','gasoline');
 /*!40000 ALTER TABLE `engine_dim` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -74,5 +74,6 @@ CREATE TABLE `make_dim` (
 LOCK TABLES `make_dim` WRITE;
 /*!40000 ALTER TABLE `make_dim` DISABLE KEYS */;
 INSERT INTO `make_dim` VALUES (1,'Ford','USA');
+INSERT INTO `make_dim` VALUES (2,'Nissan','Japan');
 /*!40000 ALTER TABLE `make_dim` ENABLE KEYS */;
 UNLOCK TABLES;

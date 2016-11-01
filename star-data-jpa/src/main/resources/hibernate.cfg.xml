@@ -7,7 +7,7 @@
         <!--<mapping resource="persistence.xml"/>-->
 
         <property name="connection.url">jdbc:mysql://localhost:3306/galaxy_schema</property>
-        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <mapping class="com.github.wkennedy.entities.CarFactEntity"/>
         <mapping class="com.github.wkennedy.entities.EngineDimEntity"/>
         <mapping class="com.github.wkennedy.entities.MakeDimEntity"/>

@@ -1,5 +1,6 @@
 package com.github.wkennedy;
 
+import com.github.wkennedy.dto.Car;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -65,13 +66,16 @@ public class CarFactProcessorIT {
     @SuppressWarnings("unchecked")
     public void testWiring() {
         Tuple tupleMessage = jsonStringToTupleConverter.convert("{  \n" +
-                "   \"engineCode\":\"SR20DE\",\n" +
-                "   \"make\":\"Ford\"\n" +
+                "   \"engineCode\":\"SR20\",\n" +
+                "   \"make\":\"Nissan\"\n" +
                 "}");
 
         Map<String, Object> headers = new HashMap<>();
-        headers.put("content-type", "application/x-spring-tuple");
-        Message<Tuple> message = new GenericMessage<>(tupleMessage, headers);
+        Car car = new Car();
+        car.setEngine("SR20");
+        car.setMake("Nissan");
+        headers.put("content-type", "application/json");
+        Message<Car> message = new GenericMessage<>(car, headers);
         carFactProcessor.input().send(message);
         Message<String> received = (Message<String>) messageCollector.forChannel(carFactProcessor.output()).poll();
         String payload = received.getPayload();

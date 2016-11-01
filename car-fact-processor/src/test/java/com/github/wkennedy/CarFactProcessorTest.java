@@ -1,5 +1,6 @@
 package com.github.wkennedy;
 
+import com.github.wkennedy.dto.Car;
 import com.github.wkennedy.entities.EngineDimEntity;
 import com.github.wkennedy.entities.MakeDimEntity;
 import com.github.wkennedy.repo.EngineDimRepository;
@@ -48,8 +49,8 @@ public class CarFactProcessorTest {
 
         MakeDimEntity makeDimEntity = new MakeDimEntity();
         makeDimEntity.setId(MAKE_ID);
-        makeDimEntity.setName("Ford");
-        given(makeDimRepository.findByName("Ford")).willReturn(makeDimEntity);
+        makeDimEntity.setName("Nissan");
+        given(makeDimRepository.findByName("Nissan")).willReturn(makeDimEntity);
     }
 
     @Test
@@ -57,10 +58,14 @@ public class CarFactProcessorTest {
     public void testTransform() throws ParseException {
         Tuple tupleMessage = jsonStringToTupleConverter.convert("{  \n" +
                 "   \"engineCode\":\"SR20\",\n" +
-                "   \"make\":\"Ford\"\n" +
+                "   \"make\":\"Nissan\"\n" +
                 "}");
 
-        GenericMessage<String> response = (GenericMessage<String>) carFactProcessor.transform(tupleMessage);
+//        GenericMessage<String> response = (GenericMessage<String>) carFactProcessor.transform(tupleMessage);
+        Car car = new Car();
+        car.setMake("Nissan");
+        car.setEngine("SR20");
+        GenericMessage<String> response = (GenericMessage<String>) carFactProcessor.transform(car);
         assertNotNull("Response from CarFactProcessor transform should not be null", response);
         Tuple tupleResponse = jsonStringToTupleConverter.convert(response.getPayload());
         assertNotNull(tupleResponse);
