@@ -42,7 +42,7 @@ public class CarFactProcessor {
                 "   \"make\":" + makeDimEntity.getId() +
                 "}";
 
-        logger.debug("WinFactProcessor transformed result: " + message);
+        logger.debug("CarFactProcessor transformed result: " + message);
         return MessageBuilder.withPayload(message).build();
     }
 }
